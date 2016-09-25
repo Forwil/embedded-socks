@@ -1,0 +1,33 @@
+$def with(nowip,iplist,flag)
+<html>
+	<head>
+	</head>
+	<body>
+		<div>
+			<div>
+				<span>your ip is:$nowip</span>
+				<br>
+				$if not flag:
+					add me into <a href="add?ip=$nowip&target=GFW">FQ</a>
+						    <a href="add?ip=$nowip&target=FREE">FREE</a>
+			</div>
+			<br>
+			total number is: $len(iplist)
+			<div>
+			$for i in range(0,len(iplist)):
+				<div>
+					$(i+1):
+					$if iplist[i]["target"] == "REDSOCKS":
+						FQ	
+					$if iplist[i]["target"] == "REDSOCKS2":
+						FREE
+					,
+					$iplist[i]["prot"],
+					$iplist[i]["ip"]
+					$if iplist[i]["ip"] == nowip:
+						<a href="remove?order=$(i+1)">remove me</a>
+				<div>	
+			</div>
+		</div>
+	</body>
+</html>
